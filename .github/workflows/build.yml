@@ -12,7 +12,11 @@ jobs:
 
     - name: Set up Visual Studio
       uses: microsoft/setup-msbuild@v2
-
+    - uses: nuget/setup-nuget@v2
+      with:
+        nuget-version: 'latest'
+    - name: Restore NuGet packages
+      run: nuget restore cava_win/cava_win.sln
     - name: Build Cava
       run: msbuild cava_win/cava_win.sln /p:Configuration=Release
 
